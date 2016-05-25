@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        var driftFactor = 1;
+
+        // in m/s
+        var windSnelheid = 25.2;
+        var drijfSnelheid = 1;
+
+        function getDriftFactor() {
+            windSnelheid = windSnelheid + Math.random();
+            drijfSnelheid = Math.random() / 5;
+
+            driftFactor = windSnelheid * drijfSnelheid;
+
+            return driftFactor;
+        }
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+            ['Tijd', 'Drift Factor'],
+            ['0', getDriftFactor()],
+            ['1', getDriftFactor()],
+            ['2', getDriftFactor()],
+            ['3', getDriftFactor()],
+            ['4', getDriftFactor()],
+            ['5', getDriftFactor()],
+            ['6', getDriftFactor()],
+            ['7', getDriftFactor()]
+          ]);
+
+            var options = {
+                title: 'Drift Factor Tabel',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+
+            setInterval(function () {
+                chart.draw(data, options);
+            }, 2000);
+        }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
