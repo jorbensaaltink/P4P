@@ -1,3 +1,19 @@
+/*
+  Web client
+
+ This sketch connects to a website (http://www.google.com)
+ using an Arduino Wiznet Ethernet shield.
+
+ Circuit:
+ * Ethernet shield attached to pins 10, 11, 12, 13
+
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 9 Apr 2012
+ by Tom Igoe, based on work by Adrian McEwen
+
+ */
+
 #include <SPI.h>
 #include <Ethernet.h>
 
@@ -7,18 +23,14 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 //IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "www.google.com";    // name address for Google (using DNS)
+char server[] = "http://localhost:55432/index.html";    // name address for Google (using DNS)
 
 // Set the static IP address to use if the DHCP fails to assign
-
-// Het ip adres waar de router op is aangesloten
 IPAddress ip(192, 168, 0, 177);
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
 // that you want to connect to (port 80 is default for HTTP):
-
-// Maakt ethernetclient aan
 EthernetClient client;
 
 void setup() {
