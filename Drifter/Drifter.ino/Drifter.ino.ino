@@ -49,6 +49,7 @@ EthernetServer server(80);
 
 String httpHeader;           // = String(maxLength);
 int arg = 0, val = 0;        // to store get/post variables from the URL (argument and value, http:\\192.168.1.3\website?p8=1)
+bool command = false;
 int aanuit = 1;
 
 
@@ -156,7 +157,13 @@ void loop() {
 
          
           
-          client.print("<script type='text/javascript'> window.location = 'http://localhost:55432/index.html' </script>");
+          client.print("<script type='text/javascript'> window.location = 'http://localhost:55432/index.cshtml");
+          if (checkCommand(httpHeader))
+          {
+            client.print("?windsnelheid=");
+            client.print(sensorValue);  
+          }        
+          client.print("' </script>");
 
           // end of website
           client.println("</BODY>");
@@ -183,8 +190,26 @@ void loop() {
   }
 }
 
+// Kijk of er een command is geselecteerd
+bool checkCommand(String header)
+{
+  int result = 0;
+  String pinStatus = header.substring(header.indexOf("?p") + 2);
+  
+  if (pinStatus.substring(pinStatus.indexOf("=") + 2, pinStatus.indexOf(";")) == "2" || pinStatus.substring(pinStatus.indexOf("=") + 1, pinStatus.indexOf(";")) == "2")
+    {
+      result = 1;
+    }
+    else
+    {
+      result = 0;  
+    }
+    return result;
+}
+
 // GET-vars after "?"   192.168.1.3/?p8=1
 // parse header. Argument starts with p (only p2 .. p9)
+
 bool parseHeader(String header, int &a, int &v)
 {
   int result = 0;
@@ -223,6 +248,7 @@ bool parseHeader(String header, int &a, int &v)
       result = 1;
     }
   }
+
   Serial.print("arg: ");
   Serial.println(a);
   Serial.print("val: ");

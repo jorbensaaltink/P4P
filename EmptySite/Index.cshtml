@@ -1,5 +1,24 @@
 ﻿@{
+    /*
+    // Voor de Database
+    var db = Database.Open("Meetwaarden");
+
+    // Selecteren van waarden
+    var selectProduct = "SELECT * FROM MEETWAARDEN";
+    var rows = db.Query(selectProduct);
+
+    // Om toe te voegen
+    var insertCommand = "INSERT INTO MEETWAARDEN (Snelheid_stroom, Richting_stroom, Snelheid_stroom) VALUES(@0 @1 @2)";
+    db.Execute(insertCommand, snelheid, richting, snelheid);
+
+    // Om te verwijderen
+    var deleteCommand = "DELETE FROM MEETWAARDEN WHERE ID = @0";
+    db.Execute(deleteCommand, deleteID);
     
+    // Om te updaten
+    var updateCommand = "UPDATE MEETWAARDEN SET Type = @0 WHERE ID= @1";
+    db.Execute(updateCommand, Type, changeID);
+    */
 }
 
 <!DOCTYPE HTML>
@@ -116,8 +135,11 @@
 						</header>
 						 <div id="curve_chart" style="width: 900px; height: 500px; margin: auto"></div>
                         <br><br>
-                        <a class="btn" href="http://192.168.0.100/?p8=1">Zet de Pomp aan</a><br><br>
-                        <a class="btn" href="http://192.168.0.100/?p8=0">Zet de Pomp uit</a>
+                        <a class="btn" href="http://192.168.0.100/?p8=1">Zet de Pomp (in) aan</a><br><br>
+                        <a class="btn" href="http://192.168.0.100/?p8=0">Zet de Pomp (in) uit</a><br><br>
+                        <a class="btn" href="http://192.168.0.100/?p9=1">Zet de Pomp (uit) aan</a><br><br>
+                        <a class="btn" href="http://192.168.0.100/?p9=0">Zet de Pomp (uit) uit</a><br><br>
+                        <a class="btn" href="http://192.168.0.100/?p8=2">Haal wind waarde op</a>
 					</div>
 				</section>
 
